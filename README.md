@@ -50,6 +50,11 @@ The project investigates relationships between:
 
 These features are commonly studied in **market microstructure and quantitative finance research**.
 
-## Author
+## Spread vs Rolling Volatility
 
+Relationship between market volatility and bid–ask spread in high-frequency BTC data.
+
+![Spread vs Volatility](reports/figures/spread_vs_volatility.png
+
+## Author
 Pranav Jindal
