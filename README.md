@@ -1,7 +1,7 @@
 # 📈 Financial Time Series Analysis
 
 <p align="center">
-<img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?auto=format&fit=crop&w=1400&q=80" width="900">
+<img src="reports/figures/spread_vs_volatility.png" width="800">
 </p>
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
@@ -75,6 +75,14 @@ The distribution of spreads shows **heavy right-skew**, with most spreads near z
 
 ---
 
+## Volatility Clustering
+
+<p align="center">
+<img src="reports/figures/volatility_clustering.png" width="700">
+</p>
+
+Financial time series often exhibit **volatility clustering**, where periods of high market volatility are followed by more volatile periods.  
+This phenomenon is clearly visible when plotting **squared returns over time**, a common technique used in quantitative finance and risk modeling.
 ## Spread vs Trade Intensity
 
 <p align="center">
@@ -142,6 +150,28 @@ The distribution of spreads is **highly right-skewed**:
 Most spreads remain extremely small under normal market conditions, but rare market events produce **significantly wider spreads**, reflecting temporary liquidity deterioration.
 
 ---
+## Spread Distribution (Heavy Tail)
+
+<p align="center">
+<img src="reports/figures/spread_distribution.png" width="600">
+</p>
+
+The distribution of bid-ask spreads exhibits a **heavy-tailed structure**, where most spreads remain small but extreme spread values occur occasionally.
+
+Such heavy-tailed behavior is common in financial markets and reflects **periods of liquidity stress or market imbalance**.
+
+# 📊 Key Statistics
+
+| Metric | Value |
+|------|------|
+| Mean Spread | 1.29 |
+| Spread Std Dev | 4.00 |
+| Mean Rolling Volatility | 0.000842 |
+| Spread–Volatility Correlation | 0.43 |
+| Spread–Trade Intensity Correlation | 0.40 |
+| Volatility–Trade Intensity Correlation | 0.89 |
+
+These statistics highlight the relationships between **market liquidity, volatility, and trading activity**.
 
 # 📂 Project Structure
 
@@ -194,6 +224,18 @@ Future improvements could include:
 * High-frequency trading signal analysis
 
 ---
+
+# 🔬 Future Research Directions
+
+Potential extensions of this analysis include:
+
+• **GARCH volatility modeling** for forecasting market risk  
+• **Order book imbalance indicators** for liquidity prediction  
+• **Machine learning models** for spread prediction  
+• **Market regime detection** using clustering techniques  
+• **High-frequency alpha signal exploration**
+
+These directions are widely explored in **quantitative trading and market microstructure research**.
 
 # 👤 Author
 
