@@ -1,64 +1,119 @@
-# financial_time_series_analysis
-# High-Frequency Market Microstructure Analysis
+# 📈 Financial Time Series Analysis
 
-This project builds an end-to-end pipeline for analyzing high-frequency cryptocurrency market data and modeling short-term volatility using market microstructure features.
+Quantitative analysis of **market microstructure dynamics** using high-frequency cryptocurrency data.
 
-## Overview
-High-frequency trading data contains detailed information about market microstructure such as bid-ask spreads, order flow, and price dynamics.  
-This project processes raw market data, constructs microstructure features, and analyzes volatility patterns.
+This project explores relationships between:
 
-## Features Implemented
+* Bid-ask spread
+* Market volatility
+* Trade intensity
+* Liquidity dynamics
 
-- Data ingestion and preprocessing pipeline
-- Timestamp validation and data quality checks
-- Feature engineering:
-  - Log returns
-  - Bid-ask spread
-  - Rolling volatility
-- Exploratory time-series analysis
-- Volatility prediction using regression models
+The analysis demonstrates key financial phenomena such as **volatility clustering** and **spread-volatility relationships**.
 
-## Tech Stack
+---
 
-- Python
-- Pandas
-- NumPy
-- SciPy
-- Matplotlib
-- Scikit-learn
+# 🧠 Key Research Questions
 
-## Project Structure
+* How does **market volatility affect bid-ask spreads**?
+* Does **trade intensity influence liquidity**?
+* Do high-frequency returns exhibit **volatility clustering**?
+
+---
+
+# 📊 Example Visualizations
+
+## Spread vs Rolling Volatility
+
+<p align="center">
+<img src="reports/figures/spread_vs_volatility.png" width="600">
+</p>
+
+---
+
+## Spread vs Trade Intensity
+
+<p align="center">
+<img src="reports/figures/spread_vs_trade_intensity.png" width="600">
+</p>
+
+---
+
+## Volatility Over Time
+
+<p align="center">
+<img src="reports/figures/volatility_time_series.png" width="700">
+</p>
+
+---
+
+## Feature Correlation
+
+<p align="center">
+<img src="reports/figures/correlation_heatmap.png" width="450">
+</p>
+
+---
+
+# 📂 Project Structure
 
 ```
-financial_time_series_analysis/
+financial_time_series_analysis
 │
-├── notebooks/        # Exploratory analysis and modeling
-├── src/              # Core data processing scripts
-├── data/             # Raw and processed datasets
-├── reports/          # Plots and analysis outputs
+├── notebooks
+│   └── 01_exploratory_analysis.ipynb
+│
+├── src
+│   └── data_processing scripts
+│
+├── data
+│   ├── raw
+│   └── processed
+│
+├── reports
+│   └── figures
+│       ├── spread_vs_volatility.png
+│       ├── spread_vs_trade_intensity.png
+│       ├── volatility_time_series.png
+│       └── correlation_heatmap.png
+│
 ├── requirements.txt
 └── README.md
 ```
 
-## Example Analysis
+---
 
-The project investigates relationships between:
+# 🔬 Key Insights
 
-- Bid-ask spread
-- Rolling volatility
-- Future volatility
+* Bid-ask spreads widen during **periods of higher volatility**.
+* Higher trading intensity can correspond with **tighter spreads**.
+* High-frequency crypto data shows **volatility clustering**, a well-known property of financial markets.
 
-These features are commonly studied in **market microstructure and quantitative finance research**.
+---
 
-## Spread vs Rolling Volatility
+# 🛠️ Tools Used
 
-## Spread vs Rolling Volatility
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Seaborn
+* Jupyter Notebook
 
-Relationship between rolling volatility and bid–ask spread in high-frequency BTC market data.
+---
 
-Higher volatility periods tend to coincide with wider spreads, reflecting reduced liquidity and increased market uncertainty.
+# 🚀 Possible Extensions
 
-![Spread vs Volatility](reports/figures/spread_vs_volatility.png)
+* Volatility forecasting using **GARCH models**
+* Liquidity prediction models
+* Market microstructure feature engineering
+* Machine learning models for spread prediction
 
-## Author
-Pranav Jindal
+---
+
+# 👤 Author
+
+**Pranav Jindal**
+
+Aspiring quantitative researcher interested in financial markets, data science, and algorithmic trading.
+
