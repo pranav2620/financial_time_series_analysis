@@ -102,7 +102,7 @@ The distribution of spreads shows **heavy right-skew**, with most spreads near z
 ## Spread Distribution (Log Scale)
 
 <p align="center">
-<img src="reports/figures/spread_distribution_log.png" width="500">
+<img src="reports/figures/spread_distribution.png" width="500">
 </p>
 
 The log-scaled histogram highlights the **heavy-tailed nature of spreads**, where extreme spread events occur infrequently but can be very large.
