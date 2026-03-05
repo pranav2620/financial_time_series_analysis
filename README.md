@@ -1,6 +1,21 @@
+<p align="center">
+<img src="https://images.unsplash.com/photo-1642543492481-44e81e3914a7" width="900">
+</p>
+
 # 📈 Financial Time Series Analysis
 
 Quantitative analysis of **market microstructure dynamics** using high-frequency cryptocurrency data.
+
+# 📈 Financial Time Series Analysis
+
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-green)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange)
+![Seaborn](https://img.shields.io/badge/Seaborn-Statistical%20Plots-purple)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
+Quantitative analysis of **market microstructure dynamics** using high-frequency cryptocurrency data.
+
 
 This project explores relationships between:
 
@@ -54,6 +69,34 @@ The analysis demonstrates key financial phenomena such as **volatility clusterin
 </p>
 
 ---
+
+# 📊 Dataset
+
+The dataset contains high-frequency cryptocurrency market data including:
+
+* Bid-ask spread
+* Midpoint prices
+* Order book depth
+* Bid/ask market notional values
+* Trade counts
+
+Features engineered in this project:
+
+| Feature         | Description                   |
+| --------------- | ----------------------------- |
+| spread          | Bid-ask spread                |
+| rolling_vol     | Rolling volatility of returns |
+| trade_intensity | Trading activity proxy        |
+
+# 📈 Feature Summary
+
+| Feature            | Financial Meaning        |
+| ------------------ | ------------------------ |
+| Spread             | Market liquidity measure |
+| Rolling Volatility | Market risk level        |
+| Trade Intensity    | Market activity proxy    |
+
+These features are commonly used in **market microstructure research**.
 
 # 📂 Project Structure
 
