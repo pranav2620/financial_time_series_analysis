@@ -1,233 +1,149 @@
-# 📈 Financial Time Series Analysis
+# Financial Time Series Analysis
 
-<p align="center">
-<img src="reports/figures/spread_vs_volatility.png" width="800">
-</p>
+A quantitative analysis of high-frequency cryptocurrency market data, focused on three relationships that matter in real trading: how volatility affects liquidity, how trading activity shifts spreads, and whether volatility clusters over time.
 
-![Python](https://img.shields.io/badge/Python-3.10+-blue)
-![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-green)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange)
-![Seaborn](https://img.shields.io/badge/Seaborn-Statistical%20Plots-purple)
-![License](https://img.shields.io/badge/License-MIT-lightgrey)
-
-A quantitative analysis of **market microstructure dynamics** using high-frequency cryptocurrency market data.
-
-This project investigates relationships between **liquidity, volatility, and trading activity**, which are core concepts in financial market microstructure and quantitative finance.
+The short answer to all three: yes, measurably.
 
 ---
 
-# 📌 Research Objectives
+## What this project investigates
 
-This project explores the following questions:
+Four questions drove the analysis:
 
-* How does **market volatility affect bid-ask spreads**?
-* Does **trading activity influence market liquidity**?
-* Do high-frequency markets exhibit **volatility clustering**?
-* How are **spread, volatility, and trade intensity related**?
-
----
-
-# 📊 Dataset
-
-The dataset contains **high-frequency cryptocurrency market data** including:
-
-* Bid-ask spread
-* Midpoint prices
-* Order book depth
-* Bid/ask market notional values
-* Trade activity
+- Do bid-ask spreads widen when volatility rises?
+- Does trading activity affect liquidity conditions?
+- Do high-frequency crypto markets show volatility clustering?
+- How are spread, volatility, and trade intensity related to each other?
 
 ---
 
-# 📈 Feature Engineering
+## Dataset
 
-Three core market microstructure variables were constructed:
-
-| Feature             | Description                           | Financial Interpretation |
-| ------------------- | ------------------------------------- | ------------------------ |
-| **spread**          | Bid-ask spread                        | Liquidity measure        |
-| **rolling_vol**     | Rolling standard deviation of returns | Market volatility        |
-| **trade_intensity** | Rolling trade activity proxy          | Market activity          |
-
-These variables are widely used in **quantitative finance and microstructure research**.
+High-frequency cryptocurrency market data including bid-ask spreads, midpoint prices, order book depth, bid/ask notional values, and trade activity records.
 
 ---
 
-# 📊 Feature Statistics
+## Feature Engineering
 
-| Metric | Spread | Rolling Volatility | Trade Intensity |
-| ------ | ------ | ------------------ | --------------- |
-| Mean   | 1.29   | 0.00084            | 50              |
-| Median | 0.01   | 0.00070            | 50              |
-| Max    | 160.36 | 0.0106             | 50              |
+Three microstructure variables were constructed from raw data:
 
-The distribution of spreads shows **heavy right-skew**, with most spreads near zero but occasional extreme spikes.
+| Feature | What it measures |
+|---|---|
+| `spread` | Bid-ask spread — the primary liquidity proxy |
+| `rolling_vol` | Rolling standard deviation of returns — market volatility |
+| `trade_intensity` | Rolling trade activity — how active the market is at any moment |
 
----
-
-# 📊 Visualizations
-
-## Spread vs Rolling Volatility
-
-<p align="center">
-<img src="reports/figures/spread_vs_volatility.png" width="650">
-</p>
+These are standard inputs in quantitative finance and microstructure research. The goal was to see how they move relative to each other, not to predict price.
 
 ---
 
-## Volatility Clustering
+## What the data showed
 
-<p align="center">
-<img src="reports/figures/volatility_clustering.png" width="700">
-</p>
+**Spread–Volatility: correlation 0.43**
 
-Financial time series often exhibit **volatility clustering**, where periods of high market volatility are followed by more volatile periods.
-This phenomenon becomes visible when plotting **squared returns over time**, a common technique used in quantitative finance and risk modeling.
+![Spread vs Volatility](reports/figures/spread_vs_volatility.png)
 
----
-
-## Spread vs Trade Intensity
-
-<p align="center">
-<img src="reports/figures/spread_vs_trade_intensity.png" width="650">
-</p>
+When market risk rises, liquidity providers widen their spreads. This is exactly what microstructure theory predicts — and the data confirms it. The relationship isn't perfect (0.43, not 0.9), but it's consistent enough to be operationally meaningful.
 
 ---
 
-## Rolling Volatility Over Time
+**Spread–Trade Intensity: correlation 0.40**
 
-<p align="center">
-<img src="reports/figures/volatility_time_series.png" width="750">
-</p>
+![Spread vs Trade Intensity](reports/figures/spread_vs_trade_intensity.png)
 
----
-
-## Feature Correlation Heatmap
-
-<p align="center">
-<img src="reports/figures/correlation_heatmap.png" width="450">
-</p>
+Higher trading activity is associated with wider spreads. This runs counter to the naive intuition that more trading means better liquidity — in high-frequency markets, activity spikes often reflect uncertainty, not confidence.
 
 ---
 
-## Spread Distribution (Heavy-Tailed Behavior)
+**Volatility–Trade Intensity: correlation 0.89**
 
-<p align="center">
-<img src="reports/figures/spread_distribution.png" width="600">
-</p>
+![Rolling Volatility Over Time](reports/figures/volatility_time_series.png)
 
-The distribution of bid-ask spreads exhibits a **heavy-tailed structure**, where most spreads remain small but extreme spread values occur occasionally.
-
-Such heavy-tailed behavior is common in financial markets and reflects **periods of liquidity stress or market imbalance**.
+This is the strongest finding. Periods of high trading activity and periods of high volatility are nearly inseparable in this dataset. They don't just correlate — they move together. For anyone building a volatility signal from order flow data, this relationship is worth paying attention to.
 
 ---
 
-# 📊 Key Findings
+**Spread distribution: heavily right-skewed**
 
-### Spread–Volatility Relationship
+![Spread Distribution](reports/figures/spread_distribution.png)
 
-The correlation between **bid-ask spread and rolling volatility is 0.43**.
+| Metric | Value |
+|---|---|
+| Median spread | 0.01 |
+| Mean spread | 1.29 |
+| Max spread | 160.36 |
 
-This indicates that **liquidity providers widen spreads during periods of higher market risk**, consistent with market microstructure theory.
-
----
-
-### Spread and Trading Activity
-
-The correlation between **spread and trade intensity is 0.40**, suggesting that changes in trading activity are associated with shifts in liquidity conditions.
+Under normal conditions, spreads are tiny. But rare events — liquidity stress, market imbalance, large directional moves — push spreads to extremes that pull the mean well above the median. The heavy tail isn't noise; it's the signal.
 
 ---
 
-### Volatility and Market Activity
+**Volatility clustering**
 
-A strong correlation of **0.89 between rolling volatility and trade intensity** indicates that periods of **high trading activity tend to coincide with increased market volatility**.
+![Volatility Clustering](reports/figures/volatility_clustering.png)
 
----
-
-### Spread Distribution
-
-The distribution of spreads is **highly right-skewed**:
-
-* Median spread: **0.01**
-* Mean spread: **1.29**
-* Maximum spread: **160.36**
-
-Most spreads remain extremely small under normal market conditions, but rare market events produce **significantly wider spreads**, reflecting temporary liquidity deterioration.
+Plotting squared returns over time shows clear clustering — volatile periods follow volatile periods. This is a well-documented phenomenon in financial time series and shows up cleanly in this data.
 
 ---
 
-# 📊 Key Statistics
+**Feature Correlation Heatmap**
 
-| Metric                                 | Value    |
-| -------------------------------------- | -------- |
-| Mean Spread                            | 1.29     |
-| Spread Standard Deviation              | 4.00     |
-| Mean Rolling Volatility                | 0.000842 |
-| Spread–Volatility Correlation          | 0.43     |
-| Spread–Trade Intensity Correlation     | 0.40     |
-| Volatility–Trade Intensity Correlation | 0.89     |
-
-These statistics highlight the relationships between **market liquidity, volatility, and trading activity**.
+![Correlation Heatmap](reports/figures/correlation_heatmap.png)
 
 ---
 
-# 📂 Project Structure
+## Key Statistics
+
+| Metric | Value |
+|---|---|
+| Mean Spread | 1.29 |
+| Spread Std Dev | 4.00 |
+| Mean Rolling Volatility | 0.000842 |
+| Spread–Volatility Correlation | 0.43 |
+| Spread–Trade Intensity Correlation | 0.40 |
+| Volatility–Trade Intensity Correlation | 0.89 |
+
+---
+
+## Project Structure
 
 ```
-financial_time_series_analysis
-│
-├── notebooks
+financial_time_series_analysis/
+├── notebooks/
 │   └── 01_exploratory_analysis.ipynb
-│
-├── data
-│   ├── raw
-│   └── processed
-│
-├── reports
-│   └── figures
+├── data/
+│   ├── raw/
+│   └── processed/
+├── reports/
+│   └── figures/
 │       ├── spread_vs_volatility.png
 │       ├── spread_vs_trade_intensity.png
 │       ├── volatility_time_series.png
 │       ├── correlation_heatmap.png
 │       ├── spread_distribution.png
 │       └── volatility_clustering.png
-│
-├── src
+├── src/
 │   └── data_processing.py
-│
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-# 🛠️ Tools & Libraries
+## Stack
 
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Seaborn
-* Jupyter Notebook
+Python, Pandas, NumPy, Matplotlib, Seaborn, Jupyter Notebook
 
 ---
 
-# 🔬 Future Research Directions
+## Where this could go
 
-Potential extensions of this analysis include:
+A few natural extensions:
 
-• **GARCH volatility modeling** for forecasting market risk
-• **Order book imbalance indicators** for liquidity prediction
-• **Machine learning models** for spread prediction
-• **Market regime detection** using clustering techniques
-• **High-frequency alpha signal exploration**
-
-These directions are widely explored in **quantitative trading and market microstructure research**.
+- **GARCH modeling** — the volatility clustering finding is a direct setup for GARCH. Fitting a GARCH(1,1) to this data would quantify the clustering and produce volatility forecasts
+- **Order book imbalance signals** — the depth data is already in the dataset; using it to predict short-term spread changes is a tractable next step
+- **Spread prediction models** — the 0.43 and 0.40 correlations are weak enough that a linear model won't work well, but tree-based models on lagged features might
+- **Regime detection** — the heavy-tailed spread distribution suggests distinct market regimes (normal vs stress). Clustering on microstructure features to identify those regimes would be worth exploring
 
 ---
 
-# 👤 Author
-
-**Pranav Jindal**
-
-
+*Author: Pranav Jindal*
